@@ -14,7 +14,7 @@ echo "Uses yaml2schema to setup database."
 echo "Copies the files from the anvil app to the project directories"
 echo "Creates scripts for push and pull to anvil server."
 # what your anvil app is called
-app_on_laptop=$(pwd)
+app_on_laptop="$(pwd)/pyDALAnvilWorksDev"
 anvil_app="$app_on_laptop/AnvilWorksApp"
 yaml2schema="$app_on_laptop/yaml2schema"
 pyDALAnvilWorks="$app_on_laptop/pyDALAnvilWorks"
@@ -94,6 +94,7 @@ if ! "$pyDALAnvilWorks"/yaml2schema.zsh "$anvil_app" "$app_on_laptop" "$yaml2sch
     echo "Errors occurred. Exiting."
     exit 1
 fi
+
 # copy our server and client files
 echo "Copy server and client files .."
 chmod +x "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh || exit 1
@@ -101,6 +102,16 @@ if ! "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh "$anvil_app" "$app_on_lapt
     echo "Errors occurred. Exiting."
     exit 1
 fi
+
+# Generate all the _anvil_designer.py files for every form.
+echo "Generate all the _anvil_designer.py files for every form."
+if ! python3 -m _anvil_designer.generate_files; then
+  echo "Crashed while regenerating the _anvil_designer.py files."
+    exit 1
+fi
+# Run PyTest
+python3 -m pytest
+
 cd "$app_on_laptop" || exit 1
 echo "Create local scripts.."
 echo "anvil_app=${anvil_app}
