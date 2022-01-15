@@ -1,4 +1,4 @@
-# myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
+myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
 
 echo "What this script does:"
 echo "Installs the git submodules:"
@@ -13,8 +13,16 @@ echo "  Parallel pytest helper"
 echo "Uses yaml2schema to setup database."
 echo "Copies the files from the anvil app to the project directories"
 echo "Creates scripts for push and pull to anvil server."
-# what your anvil app is called
-app_on_laptop="$(pwd)"
+
+if [ $# -eq 1 ]
+  then
+    myAnvilGit=$1
+else
+    echo "myAnvilGit not an argument. Using:"
+    echo "${myAnvilGit}"
+fi
+
+app_on_laptop=$(pwd)
 anvil_app="$app_on_laptop/AnvilWorksApp"
 yaml2schema="$app_on_laptop/yaml2schema"
 pyDALAnvilWorks="$app_on_laptop/pyDALAnvilWorks"
@@ -49,8 +57,7 @@ fi
 echo "Soft link directories anvil and _anvil_designer and cp anvil.yaml"
 ln -s "$pyDALAnvilWorks"/anvil anvil
 ln -s "$pyDALAnvilWorks"/_anvil_designer _anvil_designer
-cp $anvil_app/anvil.yaml $app_on_laptop/
-
+cp "$anvil_app"/anvil.yaml "$app_on_laptop"/
 
 rm -rf "$app_on_laptop"/anvil_extras  # just in case there is one there...
 
@@ -109,7 +116,8 @@ if ! python3 -m _anvil_designer.generate_files; then
   echo "Crashed while regenerating the _anvil_designer.py files."
     exit 1
 fi
-
+# Run PyTest
+python3 -m pytest
 
 cd "$app_on_laptop" || exit 1
 echo "Create local scripts.."
