@@ -13,12 +13,8 @@ echo "  Parallel pytest helper"
 echo "Uses yaml2schema to setup database."
 echo "Copies the files from the anvil app to the project directories"
 echo "Creates scripts for push and pull to anvil server."
-mkdir my_work
-cd my_work || exit 1
-my_work=$(pwd)
-echo "my_work is $my_work"
 # what your anvil app is called
-app_on_laptop="$my_work/pyDALAnvilWorksDev"
+app_on_laptop=$(pwd)
 anvil_app="$app_on_laptop/AnvilWorksApp"
 yaml2schema="$app_on_laptop/yaml2schema"
 pyDALAnvilWorks="$app_on_laptop/pyDALAnvilWorks"
