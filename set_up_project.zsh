@@ -22,6 +22,7 @@ else
     echo "${myAnvilGit}"
 fi
 
+# what your anvil app is called
 app_on_laptop=$(pwd)
 anvil_app="$app_on_laptop/AnvilWorksApp"
 yaml2schema="$app_on_laptop/yaml2schema"
@@ -116,8 +117,6 @@ if ! python3 -m _anvil_designer.generate_files; then
   echo "Crashed while regenerating the _anvil_designer.py files."
     exit 1
 fi
-# Run PyTest
-python3 -m pytest
 
 cd "$app_on_laptop" || exit 1
 echo "Create local scripts.."
