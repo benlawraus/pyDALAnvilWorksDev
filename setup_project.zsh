@@ -12,6 +12,7 @@ echo "  pytest"
 echo "  Parallel pytest helper"
 echo "Uses yaml2schema to setup database."
 echo "Copies the files from the anvil app to the project directories"
+echo "Generates the _anvil_designer.py files for UI auto-complete."
 echo "Creates scripts for push and pull to anvil server."
 
 if [ $# -eq 1 ]
