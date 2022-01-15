@@ -14,7 +14,7 @@ echo "Uses yaml2schema to setup database."
 echo "Copies the files from the anvil app to the project directories"
 echo "Creates scripts for push and pull to anvil server."
 # what your anvil app is called
-app_on_laptop="$(pwd)/pyDALAnvilWorksDev"
+app_on_laptop="$(pwd)"
 anvil_app="$app_on_laptop/AnvilWorksApp"
 yaml2schema="$app_on_laptop/yaml2schema"
 pyDALAnvilWorks="$app_on_laptop/pyDALAnvilWorks"
