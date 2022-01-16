@@ -56,6 +56,8 @@ if ! git submodule add https://github.com/benlawraus/pyDALAnvilWorks.git "$pyDAL
     echo "Errors occurred. Exiting."
     exit 1
 fi
+# Only want this project's tests, not pyDALAnvilWorks test
+rm -rf "$pyDALAnvilWorks"/tests
 echo "Soft link directories anvil and _anvil_designer and cp anvil.yaml"
 ln -s "$pyDALAnvilWorks"/anvil anvil
 ln -s "$pyDALAnvilWorks"/_anvil_designer _anvil_designer
