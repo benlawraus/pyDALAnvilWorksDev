@@ -228,3 +228,17 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,python,pycharm,virtualenv
+
+tests/database/
+_anvil_designer/
+anvil/
+_anvil_designer
+anvil
+anvil_extras/
+AnvilWorksApp/
+pyDALAnvilWorks/
+yaml2schema/
+
+*/__pycache__/
+*/*/__pycache__/
+
