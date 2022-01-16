@@ -38,7 +38,7 @@ git remote add origin https://github.com/benlawraus/pyDALAnvilWorksDev.git
 git pull origin master
 # Add anvil.works app as a submodule
 echo "git clone the Anvil App .."
-if ! git submodule add "$myAnvilGit" "$anvil_app"; then
+if ! git clone "$myAnvilGit" "$anvil_app"; then
     echo "$myAnvilGit"
     echo "$anvil_app"
     echo "Errors occurred. Exiting."
@@ -46,13 +46,13 @@ if ! git submodule add "$myAnvilGit" "$anvil_app"; then
 fi
 # add yaml2schema as a submodule
 echo "git submodule yaml2schema .."
-if ! git submodule add https://github.com/benlawraus/yaml2schema.git "$yaml2schema"; then
+if ! git clone https://github.com/benlawraus/yaml2schema.git "$yaml2schema"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
 # add pyDALAnvilWorks as a submodule
 echo "git submodule pyDALAnvilWorks .."
-if ! git submodule add https://github.com/benlawraus/pyDALAnvilWorks.git "$pyDALAnvilWorks"; then
+if ! git clone https://github.com/benlawraus/pyDALAnvilWorks.git "$pyDALAnvilWorks"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
