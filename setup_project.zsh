@@ -36,7 +36,7 @@ cd "$app_on_laptop" || exit 1
 git init
 git remote add origin https://github.com/benlawraus/pyDALAnvilWorksDev.git
 git pull origin master
-# Add anvil.works app as a submodule
+
 echo "git clone the Anvil App .."
 if ! git clone "$myAnvilGit" "$anvil_app"; then
     echo "$myAnvilGit"
@@ -44,20 +44,19 @@ if ! git clone "$myAnvilGit" "$anvil_app"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
-# add yaml2schema as a submodule
-echo "git submodule yaml2schema .."
+
+echo "git clone yaml2schema .."
 if ! git clone https://github.com/benlawraus/yaml2schema.git "$yaml2schema"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
-# add pyDALAnvilWorks as a submodule
-echo "git submodule pyDALAnvilWorks .."
+
+echo "git clone pyDALAnvilWorks .."
 if ! git clone https://github.com/benlawraus/pyDALAnvilWorks.git "$pyDALAnvilWorks"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
-# Only want this project's tests, not pyDALAnvilWorks test
-rm -rf "$pyDALAnvilWorks"/tests
+
 echo "Soft link directories anvil and _anvil_designer and cp anvil.yaml"
 ln -s "$pyDALAnvilWorks"/anvil anvil
 ln -s "$pyDALAnvilWorks"/_anvil_designer _anvil_designer
@@ -99,12 +98,17 @@ mv anvil-extras anvil_extras
 rm -rf ./anvil_extras/tests
 ############################################################
 # generate pydal_def.py
-echo "Generate pydal_def.py in the test directory .."
+echo "Generate pydal_def.py in the tests directory .."
 chmod +x "$pyDALAnvilWorks"/yaml2schema.zsh || exit 1
 if ! "$pyDALAnvilWorks"/yaml2schema.zsh "$anvil_app" "$app_on_laptop" "$yaml2schema"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
+
+# Only want this project's tests, not pyDALAnvilWorks test
+echo "copying a demo test file into tests."
+cp "$pyDALAnvilWorks"/tests/test_user.py "$app_on_laptop"/tests
+rm -rf "$pyDALAnvilWorks"/tests
 
 # copy our server and client files
 echo "Copy server and client files .."
