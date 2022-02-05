@@ -57,9 +57,9 @@ if ! git clone https://github.com/benlawraus/pyDALAnvilWorks.git "$pyDALAnvilWor
     exit 1
 fi
 
-echo "Soft link directories anvil and _anvil_designer and cp anvil.yaml"
-ln -s "$pyDALAnvilWorks"/anvil anvil
-ln -s "$pyDALAnvilWorks"/_anvil_designer _anvil_designer
+echo "cp directories anvil and _anvil_designer and cp anvil.yaml"
+cp "$pyDALAnvilWorks"/anvil anvil
+cp "$pyDALAnvilWorks"/_anvil_designer _anvil_designer
 cp "$anvil_app"/anvil.yaml "$app_on_laptop"/
 
 rm -rf "$app_on_laptop"/anvil_extras  # just in case there is one there...
@@ -134,6 +134,7 @@ if ! \"\$pyDALAnvilWorks\"/git_pull_from_anvil_works.zsh \"\$anvil_app\" \"\$app
   echo \"Errors\"
   exit 1
 fi
+date
 " > "$app_on_laptop"/git_pull_from_anvil_works.zsh
 
 echo "anvil_app=${anvil_app}
@@ -143,6 +144,7 @@ if ! \"\$pyDALAnvilWorks\"/git_push_to_anvil_works.zsh \"\$anvil_app\" \"\$app_o
   echo \"Errors\"
   exit 1
 fi
+date
 " > "$app_on_laptop"/git_push_to_anvil_works.zsh
 
 echo "anvil_app=${anvil_app}
@@ -153,4 +155,5 @@ if ! \"\$pyDALAnvilWorks\"/yaml2schema.zsh \"\$anvil_app\" \"\$app_on_laptop\" \
   echo \"Errors\"
   exit 1
 fi
+date
 " > "$app_on_laptop"/yaml2schema.zsh
