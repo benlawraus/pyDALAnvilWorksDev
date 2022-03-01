@@ -234,10 +234,7 @@ _anvil_designer/
 anvil/
 _anvil_designer
 anvil
-anvil_extras/
 AnvilWorksApp/
-pyDALAnvilWorks/
-yaml2schema/
 
 */__pycache__/
 */*/__pycache__/

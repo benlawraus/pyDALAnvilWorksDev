@@ -1,0 +1,9 @@
+[submodule "pyDALAnvilWorks"]
+	path = pyDALAnvilWorks
+	url = https://github.com/benlawraus/pyDALAnvilWorks.git
+[submodule "yaml2schema"]
+	path = yaml2schema
+	url = https://github.com/benlawraus/yaml2schema.git
+[submodule "anvil-extras"]
+	path = anvil-extras
+	url = https://github.com/anvilistas/anvil-extras.git

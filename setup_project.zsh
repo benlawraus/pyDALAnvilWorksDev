@@ -45,18 +45,6 @@ if ! git clone "$myAnvilGit" "$anvil_app"; then
     exit 1
 fi
 
-echo "git clone yaml2schema .."
-if ! git clone https://github.com/benlawraus/yaml2schema.git "$yaml2schema"; then
-    echo "Errors occurred. Exiting."
-    exit 1
-fi
-
-echo "git clone pyDALAnvilWorks .."
-if ! git clone https://github.com/benlawraus/pyDALAnvilWorks.git "$pyDALAnvilWorks"; then
-    echo "Errors occurred. Exiting."
-    exit 1
-fi
-
 echo "cp directories anvil and _anvil_designer and cp anvil.yaml"
 cp "$pyDALAnvilWorks"/anvil anvil
 cp "$pyDALAnvilWorks"/_anvil_designer _anvil_designer
@@ -88,15 +76,6 @@ pip3 install pyDAL
 pip3 install pytest
 pip3 install pytest-tornasync
 
-####################### OPTIONAL ##########################
-# install anvil_extras (optional, only if you use that sweet project)
-cd "$app_on_laptop" || exit 1
-git clone https://github.com/anvilistas/anvil-extras.git
-# why the hyphen when we need the underscore ?!?
-mv anvil-extras anvil_extras
-# but we don't want to run anvil_extras tests...
-rm -rf ./anvil_extras/tests
-############################################################
 # generate pydal_def.py
 echo "Generate pydal_def.py in the tests directory .."
 chmod +x "$pyDALAnvilWorks"/yaml2schema.zsh || exit 1
@@ -108,7 +87,7 @@ fi
 # Only want this project's tests, not pyDALAnvilWorks test
 echo "copying a demo test file into tests."
 cp "$pyDALAnvilWorks"/tests/test_user.py "$app_on_laptop"/tests
-rm -rf "$pyDALAnvilWorks"/tests
+
 
 # copy our server and client files
 echo "Copy server and client files .."
@@ -152,8 +131,12 @@ app_on_laptop=${app_on_laptop}
 pyDALAnvilWorks=${pyDALAnvilWorks}
 yaml2schema=${yaml2schema}
 if ! \"\$pyDALAnvilWorks\"/yaml2schema.zsh \"\$anvil_app\" \"\$app_on_laptop\" \"\$yaml2schema\"; then
-  echo \"Errors\"
-  exit 1
+  echo \"Trying again, changing permissions..\"
+  chmod +x \"\$pyDALAnvilWorks\"/yaml2schema.zsh
+  if ! \"\$pyDALAnvilWorks\"/yaml2schema.zsh \"\$anvil_app\" \"\$app_on_laptop\" \"\$yaml2schema\"; then
+    echo \"Errors\"
+    exit 1
+  fi
 fi
 date
 " > "$app_on_laptop"/yaml2schema.zsh
