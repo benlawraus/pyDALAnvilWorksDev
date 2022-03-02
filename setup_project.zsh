@@ -31,22 +31,18 @@ pyDALAnvilWorks="$app_on_laptop/pyDALAnvilWorks"
 # setopt interactivecomments
 # allow comments for zsh
 # Create new rep
-mkdir "$app_on_laptop"
-cd "$app_on_laptop" || exit 1
-git init
+git remote remove origin
 
 echo "git clone the Anvil App .."
 if ! git clone "$myAnvilGit" "$anvil_app"; then
-    echo "$myAnvilGit"
-    echo "$anvil_app"
-    echo "Errors occurred. Exiting."
+    echo "Errors occurred trying to clone ${myAnvilGit}. Exiting."
     exit 1
 fi
 
 echo "cp directories anvil and _anvil_designer and cp anvil.yaml"
-cp -r "$pyDALAnvilWorks"/anvil anvil
-cp -r "$pyDALAnvilWorks"/_anvil_designer _anvil_designer
-cp "$anvil_app"/anvil.yaml "$app_on_laptop"/
+cp -r "$pyDALAnvilWorks"/anvil anvil || exit 1
+cp -r "$pyDALAnvilWorks"/_anvil_designer _anvil_designer || exit 1
+cp "$anvil_app"/anvil.yaml "$app_on_laptop"/ || exit 1
 
 cd "$app_on_laptop" || exit 1
 # create a virtualenv
@@ -81,7 +77,7 @@ if ! "$pyDALAnvilWorks"/yaml2schema.zsh "$anvil_app" "$app_on_laptop" "$yaml2sch
 fi
 
 echo "copying a demo test file into tests."
-cp "$pyDALAnvilWorks"/tests/test_user.py "$app_on_laptop"/tests
+cp "$pyDALAnvilWorks"/tests/test_user.py "$app_on_laptop"/tests || exit 1
 
 echo "Copy server and client files .."
 chmod +x "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh || exit 1
@@ -107,7 +103,7 @@ if ! \"\$pyDALAnvilWorks\"/git_pull_from_anvil_works.zsh \"\$anvil_app\" \"\$app
 fi
 date
 " > "$app_on_laptop"/git_pull_from_anvil_works.zsh
-chmod +x "$app_on_laptop"/git_pull_from_anvil_works.zsh
+chmod +x "$app_on_laptop"/git_pull_from_anvil_works.zsh || exit 1
 
 echo "anvil_app=${anvil_app}
 app_on_laptop=${app_on_laptop}
@@ -118,7 +114,7 @@ if ! \"\$pyDALAnvilWorks\"/git_push_to_anvil_works.zsh \"\$anvil_app\" \"\$app_o
 fi
 date
 " > "$app_on_laptop"/git_push_to_anvil_works.zsh
-chmod +x "$app_on_laptop"/git_push_to_anvil_works.zsh
+chmod +x "$app_on_laptop"/git_push_to_anvil_works.zsh || exit 1
 
 echo "anvil_app=${anvil_app}
 app_on_laptop=${app_on_laptop}
@@ -134,4 +130,4 @@ if ! \"\$pyDALAnvilWorks\"/yaml2schema.zsh \"\$anvil_app\" \"\$app_on_laptop\" \
 fi
 date
 " > "$app_on_laptop"/yaml2schema.zsh
-chmod +x "$app_on_laptop"/yaml2schema.zsh
+chmod +x "$app_on_laptop"/yaml2schema.zsh || exit 1
