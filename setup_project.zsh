@@ -45,6 +45,7 @@ cp -r "$pyDALAnvilWorks"/_anvil_designer _anvil_designer || exit 1
 cp "$anvil_app"/anvil.yaml "$app_on_laptop"/ || exit 1
 
 cd "$app_on_laptop" || exit 1
+mv anvil-works anvil_works
 # create a virtualenv
 echo "Create virtualenv .."
 if ! python3 -m venv ./venv; then
