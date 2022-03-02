@@ -25,6 +25,11 @@ The script will:
 
 (BTW, this project was developed on a macbook... not sure what happens for anything else.)
 
+After ``setup_project.zsh`` is finished::
+
+    python -m pytest tests
+
+will run a test to make sure your test user can log in and out.
 
 pyDALAnvilWorks
 ===============
