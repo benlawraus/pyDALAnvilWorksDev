@@ -107,6 +107,7 @@ if ! \"\$pyDALAnvilWorks\"/git_pull_from_anvil_works.zsh \"\$anvil_app\" \"\$app
 fi
 date
 " > "$app_on_laptop"/git_pull_from_anvil_works.zsh
+chmod +x "$app_on_laptop"/git_pull_from_anvil_works.zsh
 
 echo "anvil_app=${anvil_app}
 app_on_laptop=${app_on_laptop}
@@ -117,6 +118,7 @@ if ! \"\$pyDALAnvilWorks\"/git_push_to_anvil_works.zsh \"\$anvil_app\" \"\$app_o
 fi
 date
 " > "$app_on_laptop"/git_push_to_anvil_works.zsh
+chmod +x "$app_on_laptop"/git_push_to_anvil_works.zsh
 
 echo "anvil_app=${anvil_app}
 app_on_laptop=${app_on_laptop}
@@ -132,3 +134,4 @@ if ! \"\$pyDALAnvilWorks\"/yaml2schema.zsh \"\$anvil_app\" \"\$app_on_laptop\" \
 fi
 date
 " > "$app_on_laptop"/yaml2schema.zsh
+chmod +x "$app_on_laptop"/yaml2schema.zsh
