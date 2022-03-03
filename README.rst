@@ -4,9 +4,16 @@ The best way to start is `pyDALAnvilWorksDev <https://github.com/benlawraus/pyDA
 Basically it is an empty project. Clone it using::
 
     git clone https://github.com/benlawraus/pyDALAnvilWorksDev --recursive
+    mv pyDALAnvilWorksDev myProject
+    cd myProject
+    chmod +x setup_project.zsh
 
+Before executing the script, change the first line in the script from::
 
-cd into the repo and run its script with the address of the anvil.works app.
+    myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
+
+To your actual anvil.works app.
+
 The script will:
 
 * Install your anvil.works app (using $myAnvilGit)
@@ -27,9 +34,14 @@ The script will:
 
 After ``setup_project.zsh`` is finished::
 
-    python -m pytest tests
+    source venv/bin/activate
+    python3 -m pytest tests
 
-will run a test to make sure your test user can log in and out.
+This will run a test to make sure your test user can log in and out.
+
+Next, create another directory called 'tests_myproject'. Place all your pytests in there.  Why? Well,
+then you can save your pytests directory as a github repo. Then if you want a fresh project, you could
+run the script again, but this time add your pytests directory as a git submodule.
 
 pyDALAnvilWorks
 ===============
