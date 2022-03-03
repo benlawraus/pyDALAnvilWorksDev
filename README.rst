@@ -29,9 +29,6 @@ The script will:
 * Generate the ``_anvil_designer.py`` files for IDE auto-completion.
 * Create scripts for push and pull to anvil server.
 
-
-(BTW, this project was developed on a macbook... not sure what happens for anything else.)
-
 After ``setup_project.zsh`` is finished::
 
     source venv/bin/activate
@@ -47,3 +44,5 @@ pyDALAnvilWorks
 ===============
 
 See `pyDALAnvilWorks <https://github.com/benlawraus/pyDALAnvilWorks>`_
+
+(BTW, this project was developed on a macbook... not sure what happens for anything else.)
