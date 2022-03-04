@@ -8,7 +8,11 @@ Basically it is an empty project. Clone it using::
     cd myProject
     chmod +x setup_project.zsh
 
-Before executing the script, change the first line in the script from::
+Rename the directory before anything else, because the script will generate other scripts containing the
+absolute locations of files. If you rename the directory afterwards, the links in the scripts will be invalid.
+
+
+**Before executing the script**, change the first line in the script from::
 
     myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
 
