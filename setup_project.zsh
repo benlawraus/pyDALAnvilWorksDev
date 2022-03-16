@@ -110,8 +110,12 @@ echo "anvil_app=${anvil_app}
 app_on_laptop=${app_on_laptop}
 pyDALAnvilWorks=${pyDALAnvilWorks}
 if ! \"\$pyDALAnvilWorks\"/git_push_to_anvil_works.zsh \"\$anvil_app\" \"\$app_on_laptop\"; then
-  echo \"Errors\"
-  exit 1
+  echo \"Errors. Trying again, changing permissions...\"
+  chmod +x \"\$pyDALAnvilWorks\"/git_push_to_anvil_works.zsh
+  if ! \"\$pyDALAnvilWorks\"/git_push_to_anvil_works.zsh \"\$anvil_app\" \"\$app_on_laptop\"; then
+    echo \"Errors. Exiting.\"
+    exit 1
+  fi
 fi
 date
 " > "$app_on_laptop"/git_push_to_anvil_works.zsh
@@ -125,7 +129,7 @@ if ! \"\$pyDALAnvilWorks\"/yaml2schema.zsh \"\$anvil_app\" \"\$app_on_laptop\" \
   echo \"Trying again, changing permissions..\"
   chmod +x \"\$pyDALAnvilWorks\"/yaml2schema.zsh
   if ! \"\$pyDALAnvilWorks\"/yaml2schema.zsh \"\$anvil_app\" \"\$app_on_laptop\" \"\$yaml2schema\"; then
-    echo \"Errors\"
+    echo \"Errors. Exiting.\"
     exit 1
   fi
 fi
