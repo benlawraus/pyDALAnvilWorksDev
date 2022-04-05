@@ -227,15 +227,16 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,python,pycharm,virtualenv
 
-tests/database/
 _anvil_designer/
 anvil/
-_anvil_designer
-anvil
+anvil_extras/
 AnvilWorksApp/
-
-*/__pycache__/
-*/*/__pycache__/
+client_code/
+yaml2schema/
+pyDALAnvilWorks/
+server_code/
+tests/database/
+anvil.yaml
+setup_project.zsh
 
