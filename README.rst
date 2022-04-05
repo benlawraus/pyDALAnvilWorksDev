@@ -1,5 +1,5 @@
-Note
-====
+INSTALL
+========
 The best way to start is `pyDALAnvilWorksDev <https://github.com/benlawraus/pyDALAnvilWorksDev>`_.
 Basically it is an empty project. Clone it using::
 
@@ -11,12 +11,13 @@ Basically it is an empty project. Clone it using::
 Rename the directory before anything else, because the script will generate other scripts containing the
 absolute locations of files. If you rename the directory afterwards, the links in the scripts will be invalid.
 
-
+IMPORTANT
+---------
 **Before executing the script**, change the first line in the script from::
 
     myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
 
-To your actual anvil.works app.
+To your actual anvil.works app link found from your anvil.works account.
 
 The script will:
 
