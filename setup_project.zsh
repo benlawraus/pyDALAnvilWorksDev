@@ -69,29 +69,6 @@ pip3 install pyDAL
 pip3 install pytest
 pip3 install pytest-tornasync
 
-# generate pydal_def.py
-echo "Generate pydal_def.py in the tests directory .."
-chmod +x "$pyDALAnvilWorks"/yaml2schema.zsh || exit 1
-if ! "$pyDALAnvilWorks"/yaml2schema.zsh "$anvil_app" "$app_on_laptop" "$yaml2schema"; then
-    echo "Errors occurred. Exiting."
-    exit 1
-fi
-
-echo "copying a demo test file into tests."
-cp "$pyDALAnvilWorks"/tests/test_user.py "$app_on_laptop"/tests || exit 1
-
-echo "Copy server and client files .."
-chmod +x "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh || exit 1
-if ! "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh "$anvil_app" "$app_on_laptop"; then
-    echo "Errors occurred. Exiting."
-    exit 1
-fi
-
-echo "Generate all the _anvil_designer.py files for every form."
-if ! python3 -m _anvil_designer.generate_files; then
-  echo "Crashed while regenerating the _anvil_designer.py files."
-    exit 1
-fi
 
 cd "$app_on_laptop" || exit 1
 echo "Create local scripts.."
@@ -136,3 +113,27 @@ fi
 date
 " > "$app_on_laptop"/yaml2schema.zsh
 chmod +x "$app_on_laptop"/yaml2schema.zsh || exit 1
+
+# generate pydal_def.py
+echo "Generate pydal_def.py in the tests directory .."
+chmod +x "$pyDALAnvilWorks"/yaml2schema.zsh || exit 1
+if ! "$pyDALAnvilWorks"/yaml2schema.zsh "$anvil_app" "$app_on_laptop" "$yaml2schema"; then
+    echo "Errors occurred. Exiting."
+    exit 1
+fi
+
+echo "copying a demo test file into tests."
+cp "$pyDALAnvilWorks"/tests/test_user.py "$app_on_laptop"/tests || exit 1
+
+echo "Copy server and client files .."
+chmod +x "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh || exit 1
+if ! "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh "$anvil_app" "$app_on_laptop"; then
+    echo "Errors occurred. Exiting."
+    exit 1
+fi
+
+echo "Generate all the _anvil_designer.py files for every form."
+if ! python3 -m _anvil_designer.generate_files; then
+  echo "Crashed while regenerating the _anvil_designer.py files."
+    exit 1
+fi
