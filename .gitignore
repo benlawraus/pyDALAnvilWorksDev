@@ -232,10 +232,8 @@ _anvil_designer/
 anvil/
 anvil_extras/
 AnvilWorksApp/
-client_code/
 yaml2schema/
 pyDALAnvilWorks/
-server_code/
 tests/database/
 anvil.yaml
 setup_project.zsh
