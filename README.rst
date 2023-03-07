@@ -16,6 +16,7 @@ Basically it is an empty project. Clone it using::
     git clone https://github.com/benlawraus/pyDALAnvilWorksDev --recursive
     mv pyDALAnvilWorksDev myProject
     cd myProject
+    vi setup_project.zsh
     chmod +x setup_project.zsh
 
 Rename the directory before anything else, because the script will generate other scripts containing the
