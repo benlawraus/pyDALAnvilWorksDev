@@ -1,17 +1,17 @@
 SUMMARY
 =======
-To allow testing and coding (with auto-complete) of an `anvil.works <https://anvil.works>`_ app.
+This is part of a set of repositories for the Test Driven Development of anvil.works apps.
+It allows testing (pytest) and coding (auto-complete) without needing an internet connection.
 
 
 Uses `pyDALAnvilWorks <https://github.com/benlawraus/pyDALAnvilWorks>`_ and `yaml2schema <https://github.com/benlawraus/yaml2schema>`_
-to generate a folder structure on your laptop. After installation, no interent connection is required to run tests, as the database is replicated
+to generate a folder structure on your laptop. After installation, no internet connection is required to run tests, as the database is replicated
 in sqlite.
 
 
 INSTALL
 ========
-The best way to start is `pyDALAnvilWorksDev`_.
-Basically it is an empty project. Clone it using::
+This is basically an empty scaffolding project ready to be used with an anvil.works app. Clone it using::
 
     git clone https://github.com/benlawraus/pyDALAnvilWorksDev --recursive
     mv pyDALAnvilWorksDev myProject
